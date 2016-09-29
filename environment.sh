@@ -15,7 +15,7 @@ export ROS_HOSTNAME=$HOSTNAME.local
 #make -C  $BUNNYTOWN_ROOT
 #echo "...done"
 echo "Activating development."
-source /home/schwarmcyc/catkin_ws/devel/setup.bash
+source /home/schwarmcyc/Documents/HackMD-tutorial/dit_ws/devel/setup.bash
 
 # TODO: check that the time is >= 2015
 

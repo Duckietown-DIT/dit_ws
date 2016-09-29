@@ -9,7 +9,7 @@
 #include "std_msgs/MultiArrayDimension.h"
 #include "std_msgs/Int32MultiArray.h"
 
-int Arr[90];
+int Arr[4];
 void arrayCallback(const std_msgs::Int32MultiArray::ConstPtr& array);
 
 int main(int argc, char **argv)
@@ -19,18 +19,9 @@ int main(int argc, char **argv)
 
     ros::NodeHandle n;  
 
-    ros::Subscriber sub3 = n.subscribe("/array", 100, arrayCallback);
+    ros::Subscriber sub3 = n.subscribe("/array", 5, arrayCallback);
 
     ros::spin();
-
-   /* 
-    for(int j = 1; j < 90; j++)
-    {
-        printf("%d, ", Arr[j]);
-    }
-
-    printf("\n");
-   */ 
 
     return 0;
 }
@@ -46,7 +37,7 @@ void arrayCallback(const std_msgs::Int32MultiArray::ConstPtr& array)
         i++;
     }
 
-    for(int j = 1; j < 90; j++)
+    for(int j = 1; j < 5; j++)
     {
         printf("%d, ", Arr[j]);
     }

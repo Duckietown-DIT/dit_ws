@@ -17,7 +17,7 @@ find_package(Boost REQUIRED COMPONENTS system)
  add_message_files(
    FILES
    demo_msg.msg
-
+   layout.msg
  )
 
 ## Generate services in the 'srv' folder
@@ -51,7 +51,7 @@ include_directories(
   ${Boost_INCLUDE_DIRS}
 )
 
-
+#add_executable
 add_executable(demo_topic_publisher src/demo_topic_publisher.cpp)
 add_executable(demo_topic_subscriber src/demo_topic_subscriber.cpp)
 
@@ -69,6 +69,7 @@ add_executable(demo_array_subscriber src/demo_array_subscriber.cpp)
 
 
 
+#add dependencies
 add_dependencies(demo_topic_publisher mastering_ros_demo_pkg_generate_messages_cpp)
 add_dependencies(demo_topic_subscriber mastering_ros_demo_pkg_generate_messages_cpp)
 
@@ -81,8 +82,9 @@ add_dependencies(demo_service_client mastering_ros_demo_pkg_generate_messages_cp
 add_dependencies(demo_action_server mastering_ros_demo_pkg_generate_messages_cpp)
 add_dependencies(demo_action_client mastering_ros_demo_pkg_generate_messages_cpp)
 
-add_dependencies(demo_array_publisher mastering_ros_demo_pkg_generate_messages_cpp)
-add_dependencies(demo_array_subscriber mastering_ros_demo_pkg_generate_messages_cpp)
+#no need
+#add_dependencies(demo_array_publisher mastering_ros_demo_pkg_generate_messages_cpp)
+#add_dependencies(demo_array_subscriber mastering_ros_demo_pkg_generate_messages_cpp)
 
 
 

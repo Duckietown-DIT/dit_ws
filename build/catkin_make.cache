@@ -1,0 +1,2 @@
+mastering_ros_demo_pkg:struct_with_variable_length_vector
+-DCATKIN_DEVEL_PREFIX=/home/schwarmcyc/Documents/HackMD-tutorial/dit_ws/devel -DCMAKE_INSTALL_PREFIX=/home/schwarmcyc/Documents/HackMD-tutorial/dit_ws/install -G Unix Makefiles

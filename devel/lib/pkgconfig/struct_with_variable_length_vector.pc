@@ -1,0 +1,8 @@
+prefix=/home/schwarmcyc/Documents/HackMD-tutorial/dit_ws/devel
+
+Name: struct_with_variable_length_vector
+Description: Description of struct_with_variable_length_vector
+Version: 0.0.0
+Cflags: -I/home/schwarmcyc/Documents/HackMD-tutorial/dit_ws/devel/include -I/home/schwarmcyc/Documents/HackMD-tutorial/dit_ws/src/struct_with_variable_length_vector/include
+Libs: -L/home/schwarmcyc/Documents/HackMD-tutorial/dit_ws/devel/lib -lstruct_with_variable_length_vector
+Requires: roscpp rospy std_msgs message_runtime

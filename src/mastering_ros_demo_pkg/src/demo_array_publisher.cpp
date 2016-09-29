@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 
     ros::NodeHandle n;
 
-    ros::Publisher pub = n.advertise<std_msgs::Int32MultiArray>("/array", 100);
+    ros::Publisher pub = n.advertise<std_msgs::Int32MultiArray>("/array", 5);
 
     while (ros::ok())
     {
@@ -24,7 +24,7 @@ int main(int argc, char **argv)
         //Clear array
         array.data.clear();
         //for loop, pushing data in the size of the array
-        for (int i = 0; i < 90; i++)
+        for (int i = 0; i < 4; i++)
         {
             //assign array a random number between 0 and 255.
             array.data.push_back(rand() % 255);
