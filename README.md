@@ -13,40 +13,48 @@ https://hackmd.io/s/BJjIdd56
 tested on
 ubuntu14.04 ROS indigo
 
-how to compile:
-
-git clone https://github.com/Duckietown-DIT/dit_ws.git dit_ws
-
+###how to compile:
+```
 cd ~/dit_ws/
-
+git clone https://github.com/Duckietown-DIT/dit_ws.git dit_ws
 vim environment.sh
+
 
 EDIT:
 source /<YOUR-PATH-TO-dit_ws>/dit_ws/devel/setup.bash
 source /home/schwarmcyc/Documents/HackMD-tutorial/dit_ws/devel/setup.bash
-
 and save it.
 
 source environment.sh
-
 catkin_make
 
-how to use:
-open 3 teminal
 
-#1
+
+###how to use:
+open 3 teminal
+```
+
+
+```
+1.
 cd ~/dit_ws
+
 source environment.sh
+
 roscore
 
-#2
+2.
 cd ~/dit_ws
+
 source environment.sh
+
 rosrun struct_with_variable_length_vector demo_pub
 
-#3
+3.
 cd ~/dit_ws
-source environment.sh
-rosrun struct_with_variable_length_vector demo_sub
 
+source environment.sh
+
+rosrun struct_with_variable_length_vector demo_sub
+```
 
