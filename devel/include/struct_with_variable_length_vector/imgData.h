@@ -24,42 +24,24 @@ struct imgData_
   typedef imgData_<ContainerAllocator> Type;
 
   imgData_()
-    : upperLeft(0)
-    , lowerRight(0)
-    , color()
-    , cameraID()
-    , label()
+    : label()
     , size(0)
     , stride(0)
     , dataOffset(0)
     , Data()  {
-    }
+      Data.assign(0);
+  }
   imgData_(const ContainerAllocator& _alloc)
-    : upperLeft(0)
-    , lowerRight(0)
-    , color(_alloc)
-    , cameraID(_alloc)
-    , label(_alloc)
+    : label(_alloc)
     , size(0)
     , stride(0)
     , dataOffset(0)
-    , Data(_alloc)  {
+    , Data()  {
   (void)_alloc;
-    }
+      Data.assign(0);
+  }
 
 
-
-   typedef int32_t _upperLeft_type;
-  _upperLeft_type upperLeft;
-
-   typedef int32_t _lowerRight_type;
-  _lowerRight_type lowerRight;
-
-   typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _color_type;
-  _color_type color;
-
-   typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _cameraID_type;
-  _cameraID_type cameraID;
 
    typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _label_type;
   _label_type label;
@@ -73,7 +55,7 @@ struct imgData_
    typedef int16_t _dataOffset_type;
   _dataOffset_type dataOffset;
 
-   typedef std::vector<int16_t, typename ContainerAllocator::template rebind<int16_t>::other >  _Data_type;
+   typedef boost::array<int16_t, 4>  _Data_type;
   _Data_type Data;
 
 
@@ -153,12 +135,12 @@ struct MD5Sum< ::struct_with_variable_length_vector::imgData_<ContainerAllocator
 {
   static const char* value()
   {
-    return "7ff2b0479b82d51d3a7e63d61ec689a2";
+    return "f3703bb6d4603050f488eafae4154849";
   }
 
   static const char* value(const ::struct_with_variable_length_vector::imgData_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x7ff2b0479b82d51dULL;
-  static const uint64_t static_value2 = 0x3a7e63d61ec689a2ULL;
+  static const uint64_t static_value1 = 0xf3703bb6d4603050ULL;
+  static const uint64_t static_value2 = 0xf488eafae4154849ULL;
 };
 
 template<class ContainerAllocator>
@@ -177,15 +159,11 @@ struct Definition< ::struct_with_variable_length_vector::imgData_<ContainerAlloc
 {
   static const char* value()
   {
-    return "int32 upperLeft\n\
-int32 lowerRight\n\
-string color\n\
-string cameraID\n\
-string label\n\
+    return "string label\n\
 int16 size\n\
 int16 stride\n\
 int16 dataOffset\n\
-int16[] Data\n\
+int16[4] Data\n\
 ";
   }
 
@@ -204,10 +182,6 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.upperLeft);
-      stream.next(m.lowerRight);
-      stream.next(m.color);
-      stream.next(m.cameraID);
       stream.next(m.label);
       stream.next(m.size);
       stream.next(m.stride);
@@ -231,14 +205,6 @@ struct Printer< ::struct_with_variable_length_vector::imgData_<ContainerAllocato
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::struct_with_variable_length_vector::imgData_<ContainerAllocator>& v)
   {
-    s << indent << "upperLeft: ";
-    Printer<int32_t>::stream(s, indent + "  ", v.upperLeft);
-    s << indent << "lowerRight: ";
-    Printer<int32_t>::stream(s, indent + "  ", v.lowerRight);
-    s << indent << "color: ";
-    Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.color);
-    s << indent << "cameraID: ";
-    Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.cameraID);
     s << indent << "label: ";
     Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.label);
     s << indent << "size: ";

@@ -114,12 +114,12 @@ struct MD5Sum< ::struct_with_variable_length_vector::imgDataArray_<ContainerAllo
 {
   static const char* value()
   {
-    return "5acf757ce2cf62eba4d588b11014b16c";
+    return "33ef5e3553d4634610bed239b5d40f16";
   }
 
   static const char* value(const ::struct_with_variable_length_vector::imgDataArray_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x5acf757ce2cf62ebULL;
-  static const uint64_t static_value2 = 0xa4d588b11014b16cULL;
+  static const uint64_t static_value1 = 0x33ef5e3553d46346ULL;
+  static const uint64_t static_value2 = 0x10bed239b5d40f16ULL;
 };
 
 template<class ContainerAllocator>
@@ -142,15 +142,11 @@ struct Definition< ::struct_with_variable_length_vector::imgDataArray_<Container
 \n\
 ================================================================================\n\
 MSG: struct_with_variable_length_vector/imgData\n\
-int32 upperLeft\n\
-int32 lowerRight\n\
-string color\n\
-string cameraID\n\
 string label\n\
 int16 size\n\
 int16 stride\n\
 int16 dataOffset\n\
-int16[] Data\n\
+int16[4] Data\n\
 ";
   }
 

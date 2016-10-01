@@ -7,21 +7,17 @@ import struct
 
 
 class imgData(genpy.Message):
-  _md5sum = "7ff2b0479b82d51d3a7e63d61ec689a2"
+  _md5sum = "f3703bb6d4603050f488eafae4154849"
   _type = "struct_with_variable_length_vector/imgData"
   _has_header = False #flag to mark the presence of a Header object
-  _full_text = """int32 upperLeft
-int32 lowerRight
-string color
-string cameraID
-string label
+  _full_text = """string label
 int16 size
 int16 stride
 int16 dataOffset
-int16[] Data
+int16[4] Data
 """
-  __slots__ = ['upperLeft','lowerRight','color','cameraID','label','size','stride','dataOffset','Data']
-  _slot_types = ['int32','int32','string','string','string','int16','int16','int16','int16[]']
+  __slots__ = ['label','size','stride','dataOffset','Data']
+  _slot_types = ['string','int16','int16','int16','int16[4]']
 
   def __init__(self, *args, **kwds):
     """
@@ -31,7 +27,7 @@ int16[] Data
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       upperLeft,lowerRight,color,cameraID,label,size,stride,dataOffset,Data
+       label,size,stride,dataOffset,Data
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -40,14 +36,6 @@ int16[] Data
     if args or kwds:
       super(imgData, self).__init__(*args, **kwds)
       #message fields cannot be None, assign default values for those that are
-      if self.upperLeft is None:
-        self.upperLeft = 0
-      if self.lowerRight is None:
-        self.lowerRight = 0
-      if self.color is None:
-        self.color = ''
-      if self.cameraID is None:
-        self.cameraID = ''
       if self.label is None:
         self.label = ''
       if self.size is None:
@@ -57,17 +45,13 @@ int16[] Data
       if self.dataOffset is None:
         self.dataOffset = 0
       if self.Data is None:
-        self.Data = []
+        self.Data = [0,0,0,0]
     else:
-      self.upperLeft = 0
-      self.lowerRight = 0
-      self.color = ''
-      self.cameraID = ''
       self.label = ''
       self.size = 0
       self.stride = 0
       self.dataOffset = 0
-      self.Data = []
+      self.Data = [0,0,0,0]
 
   def _get_types(self):
     """
@@ -81,26 +65,6 @@ int16[] Data
     :param buff: buffer, ``StringIO``
     """
     try:
-      _x = self
-      buff.write(_struct_2i.pack(_x.upperLeft, _x.lowerRight))
-      _x = self.color
-      length = len(_x)
-      if python3 or type(_x) == unicode:
-        _x = _x.encode('utf-8')
-        length = len(_x)
-      if python3:
-        buff.write(struct.pack('<I%sB'%length, length, *_x))
-      else:
-        buff.write(struct.pack('<I%ss'%length, length, _x))
-      _x = self.cameraID
-      length = len(_x)
-      if python3 or type(_x) == unicode:
-        _x = _x.encode('utf-8')
-        length = len(_x)
-      if python3:
-        buff.write(struct.pack('<I%sB'%length, length, *_x))
-      else:
-        buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self.label
       length = len(_x)
       if python3 or type(_x) == unicode:
@@ -112,10 +76,7 @@ int16[] Data
         buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
       buff.write(_struct_3h.pack(_x.size, _x.stride, _x.dataOffset))
-      length = len(self.Data)
-      buff.write(_struct_I.pack(length))
-      pattern = '<%sh'%length
-      buff.write(struct.pack(pattern, *self.Data))
+      buff.write(_struct_4h.pack(*self.Data))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -126,28 +87,6 @@ int16[] Data
     """
     try:
       end = 0
-      _x = self
-      start = end
-      end += 8
-      (_x.upperLeft, _x.lowerRight,) = _struct_2i.unpack(str[start:end])
-      start = end
-      end += 4
-      (length,) = _struct_I.unpack(str[start:end])
-      start = end
-      end += length
-      if python3:
-        self.color = str[start:end].decode('utf-8')
-      else:
-        self.color = str[start:end]
-      start = end
-      end += 4
-      (length,) = _struct_I.unpack(str[start:end])
-      start = end
-      end += length
-      if python3:
-        self.cameraID = str[start:end].decode('utf-8')
-      else:
-        self.cameraID = str[start:end]
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])
@@ -162,12 +101,8 @@ int16[] Data
       end += 6
       (_x.size, _x.stride, _x.dataOffset,) = _struct_3h.unpack(str[start:end])
       start = end
-      end += 4
-      (length,) = _struct_I.unpack(str[start:end])
-      pattern = '<%sh'%length
-      start = end
-      end += struct.calcsize(pattern)
-      self.Data = struct.unpack(pattern, str[start:end])
+      end += 8
+      self.Data = _struct_4h.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -180,26 +115,6 @@ int16[] Data
     :param numpy: numpy python module
     """
     try:
-      _x = self
-      buff.write(_struct_2i.pack(_x.upperLeft, _x.lowerRight))
-      _x = self.color
-      length = len(_x)
-      if python3 or type(_x) == unicode:
-        _x = _x.encode('utf-8')
-        length = len(_x)
-      if python3:
-        buff.write(struct.pack('<I%sB'%length, length, *_x))
-      else:
-        buff.write(struct.pack('<I%ss'%length, length, _x))
-      _x = self.cameraID
-      length = len(_x)
-      if python3 or type(_x) == unicode:
-        _x = _x.encode('utf-8')
-        length = len(_x)
-      if python3:
-        buff.write(struct.pack('<I%sB'%length, length, *_x))
-      else:
-        buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self.label
       length = len(_x)
       if python3 or type(_x) == unicode:
@@ -211,9 +126,6 @@ int16[] Data
         buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
       buff.write(_struct_3h.pack(_x.size, _x.stride, _x.dataOffset))
-      length = len(self.Data)
-      buff.write(_struct_I.pack(length))
-      pattern = '<%sh'%length
       buff.write(self.Data.tostring())
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
@@ -226,28 +138,6 @@ int16[] Data
     """
     try:
       end = 0
-      _x = self
-      start = end
-      end += 8
-      (_x.upperLeft, _x.lowerRight,) = _struct_2i.unpack(str[start:end])
-      start = end
-      end += 4
-      (length,) = _struct_I.unpack(str[start:end])
-      start = end
-      end += length
-      if python3:
-        self.color = str[start:end].decode('utf-8')
-      else:
-        self.color = str[start:end]
-      start = end
-      end += 4
-      (length,) = _struct_I.unpack(str[start:end])
-      start = end
-      end += length
-      if python3:
-        self.cameraID = str[start:end].decode('utf-8')
-      else:
-        self.cameraID = str[start:end]
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])
@@ -262,16 +152,12 @@ int16[] Data
       end += 6
       (_x.size, _x.stride, _x.dataOffset,) = _struct_3h.unpack(str[start:end])
       start = end
-      end += 4
-      (length,) = _struct_I.unpack(str[start:end])
-      pattern = '<%sh'%length
-      start = end
-      end += struct.calcsize(pattern)
-      self.Data = numpy.frombuffer(str[start:end], dtype=numpy.int16, count=length)
+      end += 8
+      self.Data = numpy.frombuffer(str[start:end], dtype=numpy.int16, count=4)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
 
 _struct_I = genpy.struct_I
 _struct_3h = struct.Struct("<3h")
-_struct_2i = struct.Struct("<2i")
+_struct_4h = struct.Struct("<4h")

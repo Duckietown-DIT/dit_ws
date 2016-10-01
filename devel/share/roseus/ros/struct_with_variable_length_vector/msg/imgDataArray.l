@@ -61,27 +61,23 @@
    self)
   )
 
-(setf (get struct_with_variable_length_vector::imgDataArray :md5sum-) "5acf757ce2cf62eba4d588b11014b16c")
+(setf (get struct_with_variable_length_vector::imgDataArray :md5sum-) "33ef5e3553d4634610bed239b5d40f16")
 (setf (get struct_with_variable_length_vector::imgDataArray :datatype-) "struct_with_variable_length_vector/imgDataArray")
 (setf (get struct_with_variable_length_vector::imgDataArray :definition-)
       "imgData[] images
 
 ================================================================================
 MSG: struct_with_variable_length_vector/imgData
-int32 upperLeft
-int32 lowerRight
-string color
-string cameraID
 string label
 int16 size
 int16 stride
 int16 dataOffset
-int16[] Data
+int16[4] Data
 
 ")
 
 
 
-(provide :struct_with_variable_length_vector/imgDataArray "5acf757ce2cf62eba4d588b11014b16c")
+(provide :struct_with_variable_length_vector/imgDataArray "33ef5e3553d4634610bed239b5d40f16")
 
 

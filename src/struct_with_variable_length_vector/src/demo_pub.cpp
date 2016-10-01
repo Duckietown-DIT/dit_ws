@@ -31,21 +31,28 @@ int main(int argc, char **argv)
     struct_with_variable_length_vector::imgDataArray msg;//!!!create variable-length msg with element type "imgData"
     //think if we gen msg outside while loop what will happen?
 
-    //fill in the struct and vector
-    data.upperLeft=0; data.lowerRight=100; data.color="red" ; data.cameraID="one"; 
-
+    //fill in the struct and vector we pack 2 imgDataStruct
     
-    msg.images.push_back(data);
+    //pkg#1
+    data.label="one"; data.size=10; data.stride=217 ; data.dataOffset=4; 
+    data.Data[0]=10; data.Data[1]=100;data.Data[2]=36; data.Data[3]=1000;
+    msg.images.push_back(data);// vector operation std::vector  push_back(),resize()...
 
-    data.upperLeft=1; data.lowerRight=101; data.color="green" ; data.cameraID="two";        
-    msg.images.push_back(data);
+    //ref:  \
+    http://answers.ros.org/question/60614/how-to-publish-a-vector-of-unknown-length-of-structs-in-ros/           \
+    http://wiki.ros.org/msg
 
+
+    //pkg#2
+    data.label="two"; data.size=10; data.stride=218 ; data.dataOffset=4; 
+    data.Data[0]=5566; data.Data[1]=13;data.Data[2]=14; data.Data[3]=16;
+    msg.images.push_back(data);
 
     pub.publish(msg);
 
     ros::spinOnce();//this step really pub the msg
     
-    ROS_INFO("I'm publisjing omgDataArray!!!");
+    ROS_INFO("I'm publisjing imgDataArray!!!");
     loop_rate.sleep();
     
     }

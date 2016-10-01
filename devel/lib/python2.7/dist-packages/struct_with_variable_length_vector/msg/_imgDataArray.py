@@ -8,22 +8,18 @@ import struct
 import struct_with_variable_length_vector.msg
 
 class imgDataArray(genpy.Message):
-  _md5sum = "5acf757ce2cf62eba4d588b11014b16c"
+  _md5sum = "33ef5e3553d4634610bed239b5d40f16"
   _type = "struct_with_variable_length_vector/imgDataArray"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """imgData[] images
 
 ================================================================================
 MSG: struct_with_variable_length_vector/imgData
-int32 upperLeft
-int32 lowerRight
-string color
-string cameraID
 string label
 int16 size
 int16 stride
 int16 dataOffset
-int16[] Data
+int16[4] Data
 """
   __slots__ = ['images']
   _slot_types = ['struct_with_variable_length_vector/imgData[]']
@@ -65,26 +61,6 @@ int16[] Data
       length = len(self.images)
       buff.write(_struct_I.pack(length))
       for val1 in self.images:
-        _x = val1
-        buff.write(_struct_2i.pack(_x.upperLeft, _x.lowerRight))
-        _x = val1.color
-        length = len(_x)
-        if python3 or type(_x) == unicode:
-          _x = _x.encode('utf-8')
-          length = len(_x)
-        if python3:
-          buff.write(struct.pack('<I%sB'%length, length, *_x))
-        else:
-          buff.write(struct.pack('<I%ss'%length, length, _x))
-        _x = val1.cameraID
-        length = len(_x)
-        if python3 or type(_x) == unicode:
-          _x = _x.encode('utf-8')
-          length = len(_x)
-        if python3:
-          buff.write(struct.pack('<I%sB'%length, length, *_x))
-        else:
-          buff.write(struct.pack('<I%ss'%length, length, _x))
         _x = val1.label
         length = len(_x)
         if python3 or type(_x) == unicode:
@@ -96,10 +72,7 @@ int16[] Data
           buff.write(struct.pack('<I%ss'%length, length, _x))
         _x = val1
         buff.write(_struct_3h.pack(_x.size, _x.stride, _x.dataOffset))
-        length = len(val1.Data)
-        buff.write(_struct_I.pack(length))
-        pattern = '<%sh'%length
-        buff.write(struct.pack(pattern, *val1.Data))
+        buff.write(_struct_4h.pack(*val1.Data))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -118,28 +91,6 @@ int16[] Data
       self.images = []
       for i in range(0, length):
         val1 = struct_with_variable_length_vector.msg.imgData()
-        _x = val1
-        start = end
-        end += 8
-        (_x.upperLeft, _x.lowerRight,) = _struct_2i.unpack(str[start:end])
-        start = end
-        end += 4
-        (length,) = _struct_I.unpack(str[start:end])
-        start = end
-        end += length
-        if python3:
-          val1.color = str[start:end].decode('utf-8')
-        else:
-          val1.color = str[start:end]
-        start = end
-        end += 4
-        (length,) = _struct_I.unpack(str[start:end])
-        start = end
-        end += length
-        if python3:
-          val1.cameraID = str[start:end].decode('utf-8')
-        else:
-          val1.cameraID = str[start:end]
         start = end
         end += 4
         (length,) = _struct_I.unpack(str[start:end])
@@ -154,12 +105,8 @@ int16[] Data
         end += 6
         (_x.size, _x.stride, _x.dataOffset,) = _struct_3h.unpack(str[start:end])
         start = end
-        end += 4
-        (length,) = _struct_I.unpack(str[start:end])
-        pattern = '<%sh'%length
-        start = end
-        end += struct.calcsize(pattern)
-        val1.Data = struct.unpack(pattern, str[start:end])
+        end += 8
+        val1.Data = _struct_4h.unpack(str[start:end])
         self.images.append(val1)
       return self
     except struct.error as e:
@@ -176,26 +123,6 @@ int16[] Data
       length = len(self.images)
       buff.write(_struct_I.pack(length))
       for val1 in self.images:
-        _x = val1
-        buff.write(_struct_2i.pack(_x.upperLeft, _x.lowerRight))
-        _x = val1.color
-        length = len(_x)
-        if python3 or type(_x) == unicode:
-          _x = _x.encode('utf-8')
-          length = len(_x)
-        if python3:
-          buff.write(struct.pack('<I%sB'%length, length, *_x))
-        else:
-          buff.write(struct.pack('<I%ss'%length, length, _x))
-        _x = val1.cameraID
-        length = len(_x)
-        if python3 or type(_x) == unicode:
-          _x = _x.encode('utf-8')
-          length = len(_x)
-        if python3:
-          buff.write(struct.pack('<I%sB'%length, length, *_x))
-        else:
-          buff.write(struct.pack('<I%ss'%length, length, _x))
         _x = val1.label
         length = len(_x)
         if python3 or type(_x) == unicode:
@@ -207,9 +134,6 @@ int16[] Data
           buff.write(struct.pack('<I%ss'%length, length, _x))
         _x = val1
         buff.write(_struct_3h.pack(_x.size, _x.stride, _x.dataOffset))
-        length = len(val1.Data)
-        buff.write(_struct_I.pack(length))
-        pattern = '<%sh'%length
         buff.write(val1.Data.tostring())
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
@@ -230,28 +154,6 @@ int16[] Data
       self.images = []
       for i in range(0, length):
         val1 = struct_with_variable_length_vector.msg.imgData()
-        _x = val1
-        start = end
-        end += 8
-        (_x.upperLeft, _x.lowerRight,) = _struct_2i.unpack(str[start:end])
-        start = end
-        end += 4
-        (length,) = _struct_I.unpack(str[start:end])
-        start = end
-        end += length
-        if python3:
-          val1.color = str[start:end].decode('utf-8')
-        else:
-          val1.color = str[start:end]
-        start = end
-        end += 4
-        (length,) = _struct_I.unpack(str[start:end])
-        start = end
-        end += length
-        if python3:
-          val1.cameraID = str[start:end].decode('utf-8')
-        else:
-          val1.cameraID = str[start:end]
         start = end
         end += 4
         (length,) = _struct_I.unpack(str[start:end])
@@ -266,12 +168,8 @@ int16[] Data
         end += 6
         (_x.size, _x.stride, _x.dataOffset,) = _struct_3h.unpack(str[start:end])
         start = end
-        end += 4
-        (length,) = _struct_I.unpack(str[start:end])
-        pattern = '<%sh'%length
-        start = end
-        end += struct.calcsize(pattern)
-        val1.Data = numpy.frombuffer(str[start:end], dtype=numpy.int16, count=length)
+        end += 8
+        val1.Data = numpy.frombuffer(str[start:end], dtype=numpy.int16, count=4)
         self.images.append(val1)
       return self
     except struct.error as e:
@@ -279,4 +177,4 @@ int16[] Data
 
 _struct_I = genpy.struct_I
 _struct_3h = struct.Struct("<3h")
-_struct_2i = struct.Struct("<2i")
+_struct_4h = struct.Struct("<4h")

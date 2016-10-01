@@ -58,16 +58,16 @@
   "struct_with_variable_length_vector/imgDataArray")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<imgDataArray>)))
   "Returns md5sum for a message object of type '<imgDataArray>"
-  "5acf757ce2cf62eba4d588b11014b16c")
+  "33ef5e3553d4634610bed239b5d40f16")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'imgDataArray)))
   "Returns md5sum for a message object of type 'imgDataArray"
-  "5acf757ce2cf62eba4d588b11014b16c")
+  "33ef5e3553d4634610bed239b5d40f16")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<imgDataArray>)))
   "Returns full string definition for message of type '<imgDataArray>"
-  (cl:format cl:nil "imgData[] images~%~%================================================================================~%MSG: struct_with_variable_length_vector/imgData~%int32 upperLeft~%int32 lowerRight~%string color~%string cameraID~%string label~%int16 size~%int16 stride~%int16 dataOffset~%int16[] Data~%~%~%"))
+  (cl:format cl:nil "imgData[] images~%~%================================================================================~%MSG: struct_with_variable_length_vector/imgData~%string label~%int16 size~%int16 stride~%int16 dataOffset~%int16[4] Data~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'imgDataArray)))
   "Returns full string definition for message of type 'imgDataArray"
-  (cl:format cl:nil "imgData[] images~%~%================================================================================~%MSG: struct_with_variable_length_vector/imgData~%int32 upperLeft~%int32 lowerRight~%string color~%string cameraID~%string label~%int16 size~%int16 stride~%int16 dataOffset~%int16[] Data~%~%~%"))
+  (cl:format cl:nil "imgData[] images~%~%================================================================================~%MSG: struct_with_variable_length_vector/imgData~%string label~%int16 size~%int16 stride~%int16 dataOffset~%int16[4] Data~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <imgDataArray>))
   (cl:+ 0
      4 (cl:reduce #'cl:+ (cl:slot-value msg 'images) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ (roslisp-msg-protocol:serialization-length ele))))
